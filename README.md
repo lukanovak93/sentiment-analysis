@@ -48,7 +48,7 @@ Download SpaCy english language: `python -m spacy download en_core_web_lg`
 
 ### Running the training
 
-If you want to run the training of a model, here is the usage (which you can get by typing `pytohn3 main.py -h`):
+If you want to run the training of a model, here is the usage (which you can get by typing `python3 main.py -h`):
 
     usage: main.py [-h] -m {logistic,svm} [-v]
 
@@ -60,7 +60,7 @@ If you want to run the training of a model, here is the usage (which you can get
       -v, --verbose         Verbose output
 
 ### TODO
- - [ ] Stemming/Lemmatizing
+ - [x] Stemming/Lemmatizing
  - [ ] n-grams
  - [ ] TF-IDF
  - [ ] Word2Vec/GloVe
