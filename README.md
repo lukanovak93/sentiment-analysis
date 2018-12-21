@@ -44,6 +44,8 @@ I'm using Anaconda Python 3.7.1. All the other packages are in `requirements.txt
 
 To install the required packages just run `pip3 install -r requirements.txt` and all of the packages should be installed for you.
 
+Download SpaCy english language: `python -m spacy download en_core_web_lg`
+
 ### Running the training
 
 If you want to run the training of a model, here is the usage (which you can get by typing `pytohn3 main.py -h`):
