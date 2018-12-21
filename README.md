@@ -35,8 +35,10 @@ Sample text before preprocessing:
 
 |  Preprocessing  |  Embedding  |         Model         |  Accuracy  |
 |:---------------:|:-----------:|:---------------------:|:----------:|
-|     Standard    |   One-hot   |  Logistic Regression  |   0.88152  |
-|     Standard    |   One-hot   |          SVM          |   0.87112  |
+|      Simple     |   One-hot   |  Logistic Regression  |   0.88152  |
+|      Simple     |   One-hot   |          SVM          |   0.87112  |
+|     Standard    |   One-hot   |  Logistic Regression  |   0.88176  |
+
 
 ### Setup
 
