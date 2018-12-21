@@ -48,14 +48,14 @@ To install the required packages just run `pip3 install -r requirements.txt` and
 
 If you want to run the training of a model, here is the usage (which you can get by typing `pytohn3 main.py -h`):
 
-`usage: main.py [-h] -m {logistic,svm} [-v]
+    usage: main.py [-h] -m {logistic,svm} [-v]
 
-required arguments:
--m {logistic,svm}, --model {logistic,svm}
-                      Specify which model to use
-optional arguments:
-  -h, --help            show this help message and exit
-  -v, --verbose         Verbose output`
+    required arguments:
+    -m {logistic,svm}, --model {logistic,svm}
+                          Specify which model to use
+    optional arguments:
+      -h, --help            show this help message and exit
+      -v, --verbose         Verbose output
 
 ### TODO
  - [ ] Stemming/Lemmatizing
