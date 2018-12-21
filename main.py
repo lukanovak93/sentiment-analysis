@@ -1,6 +1,7 @@
 import argparse
-from sklearn.feature_extraction.text import CountVectorizer
 import numpy as np
+
+from sklearn.feature_extraction.text import CountVectorizer
 
 from util import *
 
@@ -17,8 +18,13 @@ if __name__ == '__main__':
     if args['verbose']:
         print('\nRaw text:\n\n', reviews_train[0])
 
-    reviews_train_clean = preprocess_reviews(reviews_train)
-    reviews_test_clean = preprocess_reviews(reviews_test)
+    # reviews_train_clean = preprocess_reviews(reviews_train)
+    # reviews_test_clean = preprocess_reviews(reviews_test)
+    # if args['verbose']:
+    #     print('\nProcessed text:\n\n', reviews_train_clean[0])
+
+    reviews_train_clean = preprocess_reviews_standard(reviews_train)
+    reviews_test_clean = preprocess_reviews_standard(reviews_test)
     if args['verbose']:
         print('\nProcessed text:\n\n', reviews_train_clean[0])
 

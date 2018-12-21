@@ -1,8 +1,12 @@
 import re
+
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split
 from sklearn.svm import SVC
+
+import spacy
+from spacy.lang.en import LEMMA_INDEX, LEMMA_EXC, LEMMA_RULES
 
 
 def load_files():
@@ -17,7 +21,7 @@ def load_files():
     return (reviews_train, reviews_test)
 
 
-def preprocess_reviews(reviews):
+def preprocess_reviews_simple(reviews):
     REPLACE_NO_SPACE = re.compile("(\.)|(\;)|(\:)|(\!)|(\')|(\?)|(\,)|(\")|(\()|(\))|(\[)|(\])")
     REPLACE_WITH_SPACE = re.compile("(<br\s*/><br\s*/>)|(\-)|(\/)")
 
@@ -25,6 +29,44 @@ def preprocess_reviews(reviews):
     reviews = [REPLACE_WITH_SPACE.sub(" ", line) for line in reviews]
 
     return reviews
+
+
+def remove_stopwords(text, nlp):
+    nlp_doc = nlp(text)
+    s = [token.text for token in nlp_doc if not token.is_stop]
+
+    return ' '.join(s)
+
+
+def preprocess_reviews_standard(reviews):
+    simple = preprocess_reviews_simple(reviews)
+
+    nlp = spacy.load('en_core_web_lg')
+
+    standard = []
+    for doc in simple:
+        standard.append(remove_stopwords(doc, nlp))
+
+    return standard
+
+
+def lemmatize(text, nlp):
+    lemmatized_line = [token.lemma_ for token in nlp(text)]
+    lemmatized_line = list(filter(lambda a: a != '-PRON-', lemmatized_line))
+
+    return ' '.join(lemmatized_line)
+
+
+def preprocess_reviews_advanced(reviews):
+    standard = preprocess_reviews_standard(reviews)
+
+    nlp = spacy.load('en_core_web_lg')
+
+    advanced = []
+    for doc in standard:
+        advanced.append(lemmatize(doc, nlp))
+
+    return advanced
 
 
 def get_best_param_logistic(X_train, y_train, X_val, y_val):
