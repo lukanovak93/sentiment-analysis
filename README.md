@@ -39,6 +39,7 @@ Sample text before preprocessing:
 |      Simple     |   One-hot   |          SVM          |   0.87112  |
 |     Standard    |   One-hot   |  Logistic Regression  |   0.88176  |
 |     Standard    |   One-hot   |          SVM          |   0.87004  |
+|     Advanced    |   One-hot   |  Logistic Regression  |   0.87141  |
 
 
 ### Setup
@@ -53,11 +54,14 @@ Download SpaCy english language: `python -m spacy download en_core_web_lg`
 
 If you want to run the training of a model, here is the usage (which you can get by typing `python3 main.py -h`):
 
-    usage: main.py [-h] -m {logistic,svm} [-v]
+    usage: main.py [-h] -m {logistic,svm} -p {simple,standard,advanced} [-v]
 
     required arguments:
-    -m {logistic,svm}, --model {logistic,svm}
+      -m {logistic,svm}, --model {logistic,svm}
                           Specify which model to use
+      -p {simple,standard,advanced}, --preprocess {simple,standard,advanced}
+                          Specify which preprocessing to use
+
     optional arguments:
       -h, --help            show this help message and exit
       -v, --verbose         Verbose output
