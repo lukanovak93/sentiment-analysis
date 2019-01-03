@@ -10,6 +10,7 @@ if __name__ == '__main__':
 
     ap = argparse.ArgumentParser()
     ap.add_argument('-m', '--model', choices=['logistic', 'svm'], required=True, help='Specify which model to use')
+    ap.add_argument('-p', '--preprocess', choices=['simple', 'standard', 'advanced'], required=True, help='Specify which preprocessing to use')
     ap.add_argument('-v','--verbose', required=False, action='store_true',
         help='Verbose output')
     args = vars(ap.parse_args())
@@ -18,15 +19,26 @@ if __name__ == '__main__':
     if args['verbose']:
         print('\nRaw text:\n\n', reviews_train[0])
 
-    # reviews_train_clean = preprocess_reviews(reviews_train)
-    # reviews_test_clean = preprocess_reviews(reviews_test)
-    # if args['verbose']:
-    #     print('\nProcessed text:\n\n', reviews_train_clean[0])
+    if args['preprocess'] == 'simple':
+        reviews_train_clean = preprocess_reviews_simple(reviews_train)
+        reviews_test_clean = preprocess_reviews_simple(reviews_test)
+        if args['verbose']:
+            print('\nProcessed text:\n\n', reviews_train_clean[0])
 
-    reviews_train_clean = preprocess_reviews_standard(reviews_train)
-    reviews_test_clean = preprocess_reviews_standard(reviews_test)
-    if args['verbose']:
-        print('\nProcessed text:\n\n', reviews_train_clean[0])
+    elif args['preprocess'] == 'standard':
+        reviews_train_clean = preprocess_reviews_standard(reviews_train)
+        reviews_test_clean = preprocess_reviews_standard(reviews_test)
+        if args['verbose']:
+            print('\nProcessed text:\n\n', reviews_train_clean[0])
+
+    elif args['preprocess'] == 'advanced':
+        reviews_train_clean = preprocess_reviews_advanced(reviews_train)
+        reviews_test_clean = preprocess_reviews_advanced(reviews_test)
+        if args['verbose']:
+            print('\nProcessed text:\n\n', reviews_train_clean[0])
+
+    else:
+        sys.exit(-1)
 
     cv = CountVectorizer(binary=True)
     cv.fit(reviews_train_clean)
